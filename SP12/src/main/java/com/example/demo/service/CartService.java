@@ -27,13 +27,18 @@ public class CartService {
     }
 
     public List<ProductInCart> getCart() {
-	    for (ProductInCart p: cart.getProductInCartList()
+        for (ProductInCart p: cart.getProductInCartList()
              ) {
             p.setPrice(productRepository.findById(p.getProduct_id()).get().getPrice());
             p.setProduct_name(productRepository.findById(p.getProduct_id()).get().getProduct_name());
+            if (p.getQuantity()>productRepository.findById(p.getProduct_id()).get().getQuantity_storage())
+            {
+                p.setStatus(0);
+            }
+            else p.setStatus(1);
         };
-		return cart.getProductInCartList();
-	}
+        return cart.getProductInCartList();
+    }
 
     public Optional<ProductInCart> getProductInCartById(String product_id){
         return cart.getProductInCartById(product_id);
