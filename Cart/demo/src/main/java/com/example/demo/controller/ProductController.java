@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import com.example.demo.entity.Product;
-import com.example.demo.service.ProductService;
+import com.example.demo.response.BaseResponse;
+import com.example.demo.service.impl.ProductServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "api/product")
 public class ProductController {
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
     @GetMapping
-    public List<Product> getAllProduct() {
+    public BaseResponse getAllProduct() {
         return productService.getAllProduct();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.CartDTO;
+import com.example.demo.response.BaseResponse;
 import com.example.demo.service.CartService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class CartController {
     private CartService cartService;
 
     @PostMapping
-    public int addCartForUser(@RequestBody CartDTO cartDTO) {
+    public BaseResponse addCartForUser(@RequestBody CartDTO cartDTO) {
         return cartService.addCartForUser(cartDTO);
     }
 }
