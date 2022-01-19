@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import com.example.demo.dto.CartProductDTO;
-import com.example.demo.entity.CartProduct;
+import com.example.demo.response.BaseResponse;
 import com.example.demo.service.CartProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,27 +20,27 @@ public class CartProductController {
     private CartProductService cartProductService;
 
     @PostMapping("/addProduct")
-    public int addProductToCart(@RequestBody CartProductDTO cartProductDTO) {
+    public BaseResponse addProductToCart(@RequestBody CartProductDTO cartProductDTO) {
         return cartProductService.addProductToCart(cartProductDTO);
     }
 
     @PostMapping
-    public List<CartProduct> getCartInfo(@RequestBody CartProductDTO cartProductDTO) {
+    public BaseResponse getCartInfo(@RequestBody CartProductDTO cartProductDTO) {
         return cartProductService.getCartInfo(cartProductDTO);
     }
 
     @DeleteMapping
-    public int removeProductFromCart(@RequestBody CartProductDTO cartProductDTO) {
+    public BaseResponse removeProductFromCart(@RequestBody CartProductDTO cartProductDTO) {
         return cartProductService.removeProductFromCart(cartProductDTO);
     }
 
     @PatchMapping
-    public int updateQuantityInCart(@RequestBody CartProductDTO cartProductDTO) {
+    public BaseResponse updateQuantityInCart(@RequestBody CartProductDTO cartProductDTO) {
         return cartProductService.updateQuantityInCart(cartProductDTO);
     }
 
     @PostMapping("/removeAll")
-    public int resetCart(@RequestBody CartProductDTO cartProductDTO) {
+    public BaseResponse resetCart(@RequestBody CartProductDTO cartProductDTO) {
         return cartProductService.resetCart(cartProductDTO);
     }
 }
