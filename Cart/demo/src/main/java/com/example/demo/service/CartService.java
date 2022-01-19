@@ -16,12 +16,6 @@ public class CartService {
 
     public Cart getCartByUserId(int userId) {
         List<Cart> carts = cartRepository.findAll();
-        // for (Cart cart : carts) {
-        //     if (cart.getUserId() == userId) {
-        //         return cart;
-        //     }
-        // }
-        // return null;
         Cart cart = carts.stream().filter(c -> userId == c.getUserId()).findAny().orElse(null);
         return cart;
     }
