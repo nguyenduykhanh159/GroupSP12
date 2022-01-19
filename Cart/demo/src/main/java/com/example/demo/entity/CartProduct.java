@@ -2,9 +2,7 @@ package com.example.demo.entity;
 
 import java.io.Serializable;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
