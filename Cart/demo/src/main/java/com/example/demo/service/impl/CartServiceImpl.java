@@ -27,7 +27,7 @@ public class CartServiceImpl implements CartService {
         try {
             Cart cart = getCartByUserId(cartDTO.getUserId());
             if (cart != null) {
-                return new BaseResponse<>(HttpStatus.OK, "This user had cart");
+                return new BaseResponse<>(HttpStatus.BAD_REQUEST, "This user had cart");
             }
             Cart cart1 = new Cart();
             cart1.setCartId(cartDTO.getUserId());
