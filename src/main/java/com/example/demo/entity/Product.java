@@ -31,8 +31,4 @@ public class Product implements Serializable{
 
     @Column(name = "image_url", length = 100)
     private String image_url;
-
-    // public Product (int product_id) {
-    //     this.product_id = 
-    // }
 }
