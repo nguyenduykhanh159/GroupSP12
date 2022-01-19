@@ -25,4 +25,13 @@ public class ProductServiceImpl implements ProductService{
             return new BaseResponse<>(HttpStatus.BAD_REQUEST, "Get error", e.getMessage());
         }
     }
+
+    public BaseResponse addProduct(Product product) {
+        try {
+            productRepository.save(product);
+            return new BaseResponse<>(HttpStatus.OK, "Add product successfully");
+        } catch (Exception e) {
+            return new BaseResponse<>(HttpStatus.BAD_REQUEST, "Get error", e.getMessage());
+        }
+    }
 }
