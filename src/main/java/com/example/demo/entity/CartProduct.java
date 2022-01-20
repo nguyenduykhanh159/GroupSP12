@@ -40,7 +40,7 @@ public class CartProduct implements Serializable{
     @Column(name = "size", length = 10, nullable = false)
     private String size;
 
-    @Column(name = "image_url", length = 100)
+    @Column(name = "image_url", columnDefinition = "TEXT")
     private String image_url;
 
     @ManyToOne
