@@ -11,7 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Table(name = "product_in_cart")
@@ -44,6 +48,9 @@ public class CartProduct implements Serializable{
     private String image_url;
 
     @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
     @JoinColumn(name = "cart_id", referencedColumnName = "cart_id", nullable = false)
     private Cart cart;
 }

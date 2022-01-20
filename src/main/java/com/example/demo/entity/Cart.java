@@ -9,7 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Table(name = "cart")
@@ -24,5 +28,8 @@ public class Cart implements Serializable{
     private int userId;
 
     @OneToMany(mappedBy = "cart")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
     private Set<CartProduct> cartProducts;
 }
