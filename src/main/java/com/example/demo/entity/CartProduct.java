@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -19,11 +21,8 @@ public class CartProduct implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name="cart_id")
-    private int cartId;
 
-    @Column(name="product_id")
+    @Column(name="product_id", nullable = false)
     private int productId;
 
     @Column(name = "name", length = 50)
@@ -43,4 +42,8 @@ public class CartProduct implements Serializable{
 
     @Column(name = "image_url", length = 100)
     private String image_url;
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id", referencedColumnName = "cart_id", nullable = false)
+    private Cart cart;
 }
