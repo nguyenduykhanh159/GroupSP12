@@ -54,7 +54,7 @@ public class CartProductServiceImpl implements CartProductService{
         try {
             Cart cart = cartService.getCartByUserId(cartProductDTO.getUserId());
             CartProduct cartProduct = modelMapper.map(cartProductDTO, CartProduct.class);
-            cartProduct.getCart().setCartId(cart.getCartId());
+            cartProduct.setCart(cart);
             CartProduct getCart = getCartInfoNotById(cartProduct.getCart().getCartId(), cartProduct.getProductId(), cartProduct.getSize(), cartProduct.getColor());
             System.out.println(getCart);
             if (getCart != null) {
