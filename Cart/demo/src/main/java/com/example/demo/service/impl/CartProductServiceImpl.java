@@ -32,7 +32,7 @@ public class CartProductServiceImpl implements CartProductService{
         try {
             List<CartProduct> cartProducts = cartProductRepository.findAll();
             Cart cart = cartService.getCartByUserId(cartProductDTO.getUserId());
-            List<CartProduct> getCarts = cartProducts.stream().filter(carts -> carts.getCartId() == cart.getCartId())
+            List<CartProduct> getCarts = cartProducts.stream().filter(carts -> carts.getCart().getCartId() == cart.getCartId())
                                     .collect(Collectors.toList());
             return new BaseResponse<>(HttpStatus.OK, "Cart info", getCarts);
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class CartProductServiceImpl implements CartProductService{
 
     public CartProduct getCartInfoNotById(int cart_id, int product_id, String size, String color) {
         List<CartProduct> cartProducts = cartProductRepository.findAll();
-        CartProduct getCart = cartProducts.stream().filter(carts -> carts.getCartId() == cart_id
+        CartProduct getCart = cartProducts.stream().filter(carts -> carts.getCart().getCartId() == cart_id
                                     && carts.getColor().equals(color)
                                     && carts.getSize().equals(size)
                                     && carts.getProductId() == product_id).findAny().orElse(null);
@@ -54,8 +54,8 @@ public class CartProductServiceImpl implements CartProductService{
         try {
             Cart cart = cartService.getCartByUserId(cartProductDTO.getUserId());
             CartProduct cartProduct = modelMapper.map(cartProductDTO, CartProduct.class);
-            cartProduct.setCartId(cart.getCartId());
-            CartProduct getCart = getCartInfoNotById(cartProduct.getCartId(), cartProduct.getProductId(), cartProduct.getSize(), cartProduct.getColor());
+            cartProduct.setCart(cart);
+            CartProduct getCart = getCartInfoNotById(cartProduct.getCart().getCartId(), cartProduct.getProductId(), cartProduct.getSize(), cartProduct.getColor());
             System.out.println(getCart);
             if (getCart != null) {
                 cartProduct.setId(getCart.getId());
@@ -91,7 +91,7 @@ public class CartProductServiceImpl implements CartProductService{
     public List<CartProduct> getCart(CartProductDTO cartProductDTO) {
         List<CartProduct> cartProducts = cartProductRepository.findAll();
         Cart cart = cartService.getCartByUserId(cartProductDTO.getUserId());
-        List<CartProduct> getCarts = cartProducts.stream().filter(carts -> carts.getCartId() == cart.getCartId())
+        List<CartProduct> getCarts = cartProducts.stream().filter(carts -> carts.getCart().getCartId() == cart.getCartId())
                                     .collect(Collectors.toList());
         return getCarts;
     }

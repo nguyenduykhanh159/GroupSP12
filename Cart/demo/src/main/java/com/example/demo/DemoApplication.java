@@ -11,11 +11,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class DemoApplication {
 
 	@Bean
-	public ModelMapper modelMapper() {
-    	return new ModelMapper();
-	}
-
-	@Bean
 	public WebMvcConfigurer configurer() {
 		return new WebMvcConfigurer() {
 			@Override
@@ -25,6 +20,11 @@ public class DemoApplication {
 				.allowedOrigins("*");
 			}
 		};
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+    	return new ModelMapper();
 	}
 
 	public static void main(String[] args) {
